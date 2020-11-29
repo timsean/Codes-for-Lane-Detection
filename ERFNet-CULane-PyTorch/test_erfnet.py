@@ -1,3 +1,4 @@
+import sys
 import os
 import time
 import shutil
@@ -10,7 +11,7 @@ import cv2
 import utils.transforms as tf
 import numpy as np
 import models
-from models import sync_bn
+#from models import sync_bn
 import dataset as ds
 from options.options import parser
 import torch.nn.functional as F
@@ -21,6 +22,7 @@ best_mIoU = 0
 def main():
     global args, best_mIoU
     args = parser.parse_args()
+    print(args)
 
     os.environ["CUDA_VISIBLE_DEVICES"] = ','.join(str(gpu) for gpu in args.gpus)
     args.gpus = len(args.gpus)
@@ -45,6 +47,8 @@ def main():
     model = models.ERFNet(num_class)
     input_mean = model.input_mean
     input_std = model.input_std
+    print(input_mean)
+    print(input_std)
     policies = model.get_optim_policies()
     model = torch.nn.DataParallel(model, device_ids=range(args.gpus)).cuda()
 

@@ -14,6 +14,7 @@ testList = strcat(data, '/list/test.txt');
 show = false;  % set to true to visualize
 
 list = textread(testList, '%s');
+%list = list(1:6:end);
 num = length(list);
 pts = 18;
 

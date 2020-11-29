@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 
 
 class VOCAugDataSet(Dataset):
-    def __init__(self, dataset_path='/home/houyuenan/remote/ApolloScapes/Codes-for-Lane-Detection/ENet-SAD-Pytorch/data/CULane/list', data_list='train', transform=None):
+    def __init__(self, dataset_path='/home/tim/Desktop/Codes-for-Lane-Detection/ERFNet-CULane-PyTorch/data/CULane/list', data_list='train', transform=None):
 
         with open(os.path.join(dataset_path, data_list + '.txt')) as f:
             self.img_list = []
@@ -28,6 +28,7 @@ class VOCAugDataSet(Dataset):
         return len(self.img_list)
 
     def __getitem__(self, idx):
+        #print(os.path.join(self.gt_path, self.label_list[idx]))
         image = cv2.imread(os.path.join(self.img_path, self.img_list[idx])).astype(np.float32)
         label = cv2.imread(os.path.join(self.gt_path, self.label_list[idx]), cv2.IMREAD_UNCHANGED)
         exist = self.exist_list[idx]

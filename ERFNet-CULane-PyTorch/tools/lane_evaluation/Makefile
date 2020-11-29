@@ -4,10 +4,11 @@ PROJECT_NAME:= evaluate
 
 INCLUDE_DIRS := include
 LIBRARY_DIRS := lib
+L = /usr/local/lib
 
 COMMON_FLAGS := -DCPU_ONLY
 CXXFLAGS := -std=c++11 -fopenmp
-LDFLAGS := -fopenmp -Wl,-rpath,./lib
+LDFLAGS := -L/usr/local/lib -fopenmp -Wl,-rpath,./lib
 
 BUILD_DIR := build
 
@@ -15,7 +16,7 @@ BUILD_DIR := build
 CXX ?= g++
 BUILD_DIR ?= ./build
 
-LIBRARIES += opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs
+LIBRARIES += opencv_core opencv_highgui opencv_imgproc #opencv_imgcodecs
 
 CXXFLAGS += $(COMMON_FLAGS) $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
 LDFLAGS +=  $(COMMON_FLAGS) $(foreach includedir,$(LIBRARY_DIRS),-L$(includedir)) $(foreach library,$(LIBRARIES),-l$(library))
