@@ -1,6 +1,6 @@
 
 ### Requirements
-- [PyTorch 0.3.0](https://pytorch.org/get-started/previous-versions/).
+- [PyTorch 0.3.0](https://pytorch.org/get-started/previous-versions/). Tested to also work on PyTorch 1.7.0 with CUDA 9.2
 - Matlab (for tools/prob2lines), version R2014a or later.
 - Opencv (for tools/lane_evaluation), version 2.4.8 (later 2.4.x should also work).
 
@@ -21,6 +21,7 @@ Please follow [list](./list) to put CULane in the desired folder. We'll call the
     sh ./test_erfnet.sh
     ```
     Testing results (probability map of lane markings) are saved in `experiments/predicts/` by default.
+    Alternatively, one can also run `realtime.py` with save set to True. Currently, the F1 measures are worse than the original method. Likely due to preprocessing differences.
 
 3. Get curve line from probability map
     ```Shell
